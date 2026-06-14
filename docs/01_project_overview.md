@@ -197,6 +197,7 @@ Load Pattern:
 | CI/CD                | GitHub Actions     |
 | Documentation        | Markdown           |
 
+
 ---
 
 ## 6. Architectural Principles
