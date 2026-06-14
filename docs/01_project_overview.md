@@ -118,6 +118,9 @@ Format:
 Load Pattern:
 
 * Daily batch ingestion
+Design Decision:
+
+Customer Master is implemented as a daily batch extract for this project because the platform supports daily analytical reporting rather than near-real-time customer profile reporting. If future business requirements require point-in-time customer profile changes throughout the day, this source can be extended to a CDC ingestion pattern.
 
 ### Product Master
 
