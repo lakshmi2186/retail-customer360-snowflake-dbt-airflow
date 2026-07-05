@@ -1,0 +1,30 @@
+USE DATABASE RETAIL_DEV;
+USE SCHEMA RAW;
+
+CREATE STAGE IF NOT EXISTS STG_POS
+    FILE_FORMAT = FF_CSV_STANDARD
+    COMMENT = 'Internal stage for POS transaction CSV files';
+
+CREATE STAGE IF NOT EXISTS STG_CUSTOMER
+    FILE_FORMAT = FF_CSV_STANDARD
+    COMMENT = 'Internal stage for customer master CSV files';
+
+CREATE STAGE IF NOT EXISTS STG_PRODUCT
+    FILE_FORMAT = FF_CSV_STANDARD
+    COMMENT = 'Internal stage for product master CSV files';
+
+CREATE STAGE IF NOT EXISTS STG_PRODUCT_CDC
+    FILE_FORMAT = FF_CSV_STANDARD
+    COMMENT = 'Internal stage for product CDC CSV files';
+
+CREATE STAGE IF NOT EXISTS STG_ASSORTMENT
+    FILE_FORMAT = FF_CSV_STANDARD
+    COMMENT = 'Internal stage for store-product assortment CSV files';
+
+CREATE STAGE IF NOT EXISTS STG_INVENTORY
+    FILE_FORMAT = FF_JSON_STANDARD
+    COMMENT = 'Internal stage for inventory snapshot JSON files';
+
+CREATE STAGE IF NOT EXISTS STG_LOYALTY
+    FILE_FORMAT = FF_JSON_STANDARD
+    COMMENT = 'Internal stage for loyalty event JSON files';
