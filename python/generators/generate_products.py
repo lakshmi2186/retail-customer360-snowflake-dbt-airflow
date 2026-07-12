@@ -62,7 +62,15 @@ BRANDS = [
     "Budget Buy",
 ]
 
-UOM = ["EA", "KG", "L"]
+UOM = ["EA", "KG", "G", "L", "ML"]
+
+PACK_SIZE_OPTIONS = {
+    "EA": [1, 2, 4, 6, 12, 24],
+    "KG": [0.5, 1, 2, 5],
+    "G": [100, 250, 500, 750],
+    "L": [0.5, 1, 2, 3],
+    "ML": [250, 375, 500, 750],
+}
 
 
 def generate_product_id(index: int) -> str:
@@ -91,7 +99,14 @@ def generate_products() -> pd.DataFrame:
         )[0]
 
         product_name = f"{brand} {subcategory} {random.choice(['Small', 'Regular', 'Large', 'Family Pack'])}"
+        
+        unit_of_measure = random.choice(UOM)
+        pack_size = random.choice(PACK_SIZE_OPTIONS[unit_of_measure])
 
+        if unit_of_measure == "EA":
+            sellable_unit = f"{pack_size} Pack" if pack_size > 1 else "Each"
+        else:
+            sellable_unit = f"{pack_size}{unit_of_measure}"
         rows.append(
             {
                 "product_id": generate_product_id(index),
@@ -104,7 +119,9 @@ def generate_products() -> pd.DataFrame:
                 "cost_price": cost_price,
                 "selling_price": selling_price,
                 "product_status": product_status,
-                "unit_of_measure": random.choice(UOM),
+                "unit_of_measure": unit_of_measure,
+                "pack_size": pack_size,
+                "sellable_unit": sellable_unit,
                 "introduction_date": fake.date_between(start_date="-10y", end_date="-30d"),
             }
         )
